@@ -328,9 +328,8 @@ void Game::ReloadUIData()
 
     //Å@====================[Å@òBã‡ånUIÅ@]
     pSJD.LoadingUIData("Alchemi","MachineIcon");
-    pSJD.LoadingUIData("Alchemi", "Left");
+    pSJD.LoadingUIData("Alchemi", "Mode");
     pSJD.LoadingUIData("Alchemi", "Middle");
-    pSJD.LoadingUIData("Alchemi", "Right");
     pSJD.LoadingUIData("Alchemi", "Num");
     pSJD.LoadingUIData("Alchemi", "MP");
     pSJD.LoadingUIData("Alchemi", "Crystal");

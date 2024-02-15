@@ -183,6 +183,9 @@ void AlchemicalMachineManager::Update(
 	int amNum			= 0;
 	//　　|=>　Noneマシン
 	int amNum_Nomal		= 0;
+	
+	//　====================[　Noneマシンのある配列番号を得る(LVの関係で無いものは-1)　]
+	int noneFirst		= -1;
 
 	//　====================[　リソースの取得量のリセット　]
 	m_mpPulsVal			= 0;
@@ -287,6 +290,12 @@ void AlchemicalMachineManager::Update(
 
 		if (m_AMObject[i]->GetModelID() == MACHINE_TYPE::NONE)
 		{
+			// Noneの始めの配列番号を得る
+			if (noneFirst <= -1)
+			{
+				noneFirst = i;
+			}
+
 			// 現状場に存在しているマシンの総数を調べる (None)
 			amNum_Nomal++;
 
@@ -355,6 +364,16 @@ void AlchemicalMachineManager::Update(
 	if (m_selectManager->GetManufacturingFlag())
 	{
 		m_AMnums[m_selectManager->GetSelectMachineType()]++;
+
+		// 自動設置モードならば即座に配置を行う
+		if (m_selectManager->GetAutomaticFlag() && noneFirst >= 0)
+		{
+
+			m_selectNumber = noneFirst;
+			//　====================[　マシンを召喚する処理　]
+			SpawnAMMachine(true);
+		}
+
 	}
 
 	//　====================[　マウスの当たり判定を戻す　]

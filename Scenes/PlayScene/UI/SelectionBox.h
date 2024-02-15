@@ -50,6 +50,8 @@ public:
 		SimpleMath::Color onColor			= { 0.9f,0.9f,0.9f,1.0f },
 		SimpleMath::Color pressdColor		= { 0.7f,0.7f,0.7f,1.0f });
 
+	void DrawUI(Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture,float rotate, int width, int height, int beside, int vertical);
+
 private:
 
 	float m_popUITextTimer;

@@ -84,6 +84,9 @@ public:
 	// 一つの要素でもtrueなら
 	bool GetHitMouseToSelectBoxEven()								{ return m_selectBoxAll;}
 
+	// 自動ユニット設置モードフラグ
+	bool GetAutomaticFlag()											{ return m_automaticFlag; }
+
 	// 錬金ボタン
 	SelectionBox* GetAlchemiButton(MACHINE_TYPE type)	{ return m_machineSelect[type]->GetMachineBox(); }
 
@@ -125,14 +128,14 @@ private:
 	// フィールド上のNoneを選択した際に、全てのMachineSelectの選択Boxの色を変更する
 	bool m_selectNoneFlag;
 
-	// マシンの名前表示
-	std::unique_ptr<SelectionBox> m_machineName;
+	// 自動ユニット設置モードフラグ
+	bool m_automaticFlag;
 
 	//// 選択ボックス(錬金ボタン用)
 	//std::unique_ptr<SelectionBox> m_selectionAlchemi;
 
-	// 選択ボックス(UI選択用)
-	std::unique_ptr<SelectionBox> m_selectionLeft,m_selectionRight;
+	// 選択ボックス(設置モード変更用)
+	std::unique_ptr<SelectionBox> m_modeChangeButton;
 
 	// マウスが範囲に入っているか否かを検出する当たり判定クラス
 	std::unique_ptr<SelectionBox> m_collider;

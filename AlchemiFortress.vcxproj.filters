@@ -1091,7 +1091,7 @@
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiCrystal.json">
       <Filter>Json\GameParameterData\Alchemi</Filter>
     </None>
-    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiLeft.json">
+    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMode.json">
       <Filter>Json\GameParameterData\Alchemi</Filter>
     </None>
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMachineIcon.json">
@@ -1107,9 +1107,6 @@
       <Filter>Json\GameParameterData\Alchemi</Filter>
     </None>
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiOffset.json">
-      <Filter>Json\GameParameterData\Alchemi</Filter>
-    </None>
-    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiRight.json">
       <Filter>Json\GameParameterData\Alchemi</Filter>
     </None>
     <None Include="Resources\Json\GameParameter\Select\UILayout_SelectLeft.json">

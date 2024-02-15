@@ -18,18 +18,11 @@
 
 #define DIRECTION	120.0f
 
-#define MACHINE_NAME_POS_SHIFT SimpleMath::Vector2(20, 60)
-
-#define MACHINE_UI_POS_SHIFT SimpleMath::Vector2(100, 60)
-
 //　====================[　結晶,魔力アイコンに使うテクスチャの大きさ　]
 #define ICON_TEX_RAGE 64
 
 //　====================[　マシンUIのサイズ　]
-#define MACHINE_UI_SIZE 0.3f
-
-//　====================[　マシンの説明テキストのサイズ　]
-#define MACHINE_TEXT_SIZE 0.5f
+#define MACHINE_UI_SIZE 0.23f
 
 //　====================[　マシンの説明テキストのアニメーション値　]
 #define MACHINE_TEXT_ANIMVAL 30.0f
@@ -45,7 +38,8 @@ MachineSelectManager::MachineSelectManager() :
 	m_cursorMachineNumber(),
 	m_prevSelectNumber(),
 	m_uiTransparentTime(),
-	m_alchemiActiveFlag()
+	m_alchemiActiveFlag(),
+	m_automaticFlag(true)
 {
 }
 
@@ -93,10 +87,6 @@ void MachineSelectManager::Initialize()
 	//　====================[　錬金ボタン選択時浮き出る魔法陣の取得　]
 	m_displayMagicCircle = std::make_unique<DisplayMagicCircle>();
 
-	//　====================[　マシンの名前の情報を取得　]
-	m_machineName		= std::make_unique<SelectionBox>(SimpleMath::Vector2(), SimpleMath::Vector2(1.0f, 1.0f));
-	m_machineName		->Initialize();
-
 	//　====================[　マウスが周辺に位置するかを取得　]
 	m_collider			= std::make_unique<SelectionBox>(uiData.pos,SimpleMath::Vector2(uiData.option["COLLIDER"], uiData.option["COLLIDER"]));
 	m_collider			->Initialize();
@@ -104,18 +94,11 @@ void MachineSelectManager::Initialize()
 	m_collider			->SetWorldInfluenceFlag(false);
 
 	//　====================[　マシンUI移動(左)の情報を取得　]
-	uiData = pSJD.GetUIData("AlchemiLeft");
-	m_selectionLeft		= std::make_unique<SelectionBox>(uiData.pos, uiData.rage);
-	m_selectionLeft		->Initialize();
-	m_selectionLeft		->SetLayer((int)uiData.option["LAYER"]);
-	m_selectionLeft		->SetKey(uiData.key);
-
-	//　====================[　マシンUI移動(右)の情報を取得　]
-	uiData = pSJD.GetUIData("AlchemiRight");
-	m_selectionRight	= std::make_unique<SelectionBox>(uiData.pos, uiData.rage);
-	m_selectionRight	->Initialize();
-	m_selectionRight	->SetLayer((int)uiData.option["LAYER"]);
-	m_selectionRight	->SetKey(uiData.key);
+	uiData = pSJD.GetUIData("AlchemiMode");
+	m_modeChangeButton = std::make_unique<SelectionBox>(uiData.pos, uiData.rage);
+	m_modeChangeButton->Initialize();
+	m_modeChangeButton->SetLayer((int)uiData.option["LAYER"]);
+	m_modeChangeButton->SetKey(uiData.key);
 
 	//　====================[　錬金ボタン内の所持数描画を取得　]
 	uiData = pSJD.GetUIData("AlchemiNum");
@@ -167,11 +150,6 @@ void MachineSelectManager::Update(FieldObjectManager* fieldObjectManager)
 	{
 		m_machineSelect[i]->Update();
 
-		// 要素から製造ボタンが押された判定を受け取る リソースが足りない場合は弾く
-		m_machineSelect[i]->GetMachineBox()->SetActiveFlag(
-			(datas->GetNowMP() - pSJD->GetMachineData(m_machineSelect[i]->GetMachineType()).alchemi_mp >= 0 &&
-				datas->GetNowCrystal() - pSJD->GetMachineData(m_machineSelect[i]->GetMachineType()).alchemi_crystal >= 0) && m_alchemiActiveFlag);
-
 		if (m_machineSelect[i]->GetMachineBox()->HitMouse())
 		{
 			m_selectNumber = (int)m_machineSelect[i]->GetMachineType();
@@ -193,9 +171,6 @@ void MachineSelectManager::Update(FieldObjectManager* fieldObjectManager)
 	//　　|=>　更新
 	m_displayMagicCircle->Update();
 	m_displayMagicCircle->TransparentUpdate(m_selectBoxAll);
-
-	//　====================[　マウス周辺に選択中のマシンの名前描画　]
-	m_machineName->SetSavePos(pINP->GetMousePosScreen() - MACHINE_NAME_POS_SHIFT);
 
 	RotationMachineList();
 
@@ -245,6 +220,14 @@ void MachineSelectManager::Update(FieldObjectManager* fieldObjectManager)
 		m_particle		->OnShot("AlchemiParticle", m_machineSelect[machineType]->GetMachineBox()->GetPos(), true);
 
 	}
+
+	// モード変更
+	m_modeChangeButton->HitMouse();
+	if (m_modeChangeButton->ClickMouse())
+	{
+		m_automaticFlag = !m_automaticFlag;
+	}
+
 }
 
 void MachineSelectManager::Render()
@@ -300,17 +283,11 @@ void MachineSelectManager::RenderUI(int machineNum[])
 		//　　|=>　所持数が0ならば色を変更する
 		if (machineNum[m_selectNumber] <= 0) name_color = Colors::Red;
 
-		//　====================[　マシンの名前を描画　]
-		SpriteLoder::TextureData texData = pSL.GetMachineNameTexture();
-		rect = SpriteCutter(texData.width / MACHINE_TYPE::NUM, texData.height, m_selectNumber, 0);
-		pSB->Draw(texData.tex.Get(), pINP->GetMousePosScreen() - MACHINE_NAME_POS_SHIFT,
-			&rect, name_color, 0.0f, SimpleMath::Vector2((texData.width / MACHINE_TYPE::NUM) / 2.0f, texData.height / 2.0f));
-
 		//　====================[　マシンUIを描画　]
-		texData = pSL.GetMachineIconTexture();
+		SpriteLoder::TextureData texData = pSL.GetMachineIconTexture();
 		rect = SpriteCutter(texData.width / (MACHINE_TYPE::NUM - 1), texData.height, m_selectNumber - 1, 0);
 
-		pSB->Draw(texData.tex.Get(), pINP->GetMousePosScreen() - MACHINE_UI_POS_SHIFT,
+		pSB->Draw(texData.tex.Get(), pINP->GetMousePosScreen(),
 			&rect, name_color, 0.0f,
 			DirectX::XMFLOAT2(static_cast<float>((texData.width / (MACHINE_TYPE::NUM - 1)) / 2),
 				static_cast<float>(texData.height / 2)), MACHINE_UI_SIZE);
@@ -335,13 +312,21 @@ void MachineSelectManager::RenderUI(int machineNum[])
 	pSB->End();
 
 	//　====================[　所持数の描画(錬金ボタン内部)　]
-	m_machineNumRender->SetNumber(machineNum[m_selectNumber]);
-	m_machineNumRender->SetPosition(m_machineSelect[m_selectNumber]->GetPos());
-	m_machineNumRender->Render();
+	if (!m_automaticFlag)
+	{
+		m_machineNumRender->SetNumber(machineNum[m_selectNumber]);
+		m_machineNumRender->SetPosition(m_machineSelect[m_selectNumber]->GetPos());
+		m_machineNumRender->Render();
+	}
+
+	//　====================[　設置モード変更ボタン描画　]
+	SpriteLoder::TextureData alchemiArrowTexture = pSL.GetInstallationMode();
+	m_modeChangeButton->DrawUI(alchemiArrowTexture.tex.Get(), 0.0f, alchemiArrowTexture.width / 2, alchemiArrowTexture.height, (int)!m_automaticFlag, 0);
+	m_modeChangeButton->SetRect(RECT{ 0,0, alchemiArrowTexture.width / 2, alchemiArrowTexture.height });
 
 	//　====================[　必要リソース量の描画　]
 	// m_mpNumRender->	Render();
-	// m_crystalRender->	Render();
+	// m_crystalRender->Render();
 
 	//　====================[　パーティクルの描画　]
 	SpriteLoder::TextureData particleTex = pSL.GetMachineMagicCircleTexture(m_selectNumber);
@@ -447,9 +432,6 @@ void MachineSelectManager::TransparentUI(float transparentVal)
 	}
 
 	//　====================[　透明化を行う　]
-	m_selectionLeft		->SetColor(SimpleMath::Color(m_selectionLeft	->GetColorRGB(), transparentVal));
-	m_selectionRight	->SetColor(SimpleMath::Color(m_selectionRight	->GetColorRGB(), transparentVal));
-
 	m_machineNumRender	->SetColor(SimpleMath::Color(m_machineNumRender	->GetColorRGB(), transparentVal));
 	m_mpNumRender		->SetColor(SimpleMath::Color(m_mpNumRender		->GetColorRGB(), transparentVal));
 	m_crystalRender		->SetColor(SimpleMath::Color(m_crystalRender	->GetColorRGB(), transparentVal));

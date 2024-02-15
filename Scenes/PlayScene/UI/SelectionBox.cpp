@@ -260,3 +260,30 @@ void SelectionBox::DrawUI(Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> textu
 
 }
 
+void SelectionBox::DrawUI(Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture, float rotate, int width, int height, int beside, int vertical)
+{
+
+	ShareData& pSD = ShareData::GetInstance();
+	auto pSB = pSD.GetSpriteBatch();
+
+	pSB->Begin(DirectX::SpriteSortMode_Deferred, pSD.GetCommonStates()->NonPremultiplied());
+
+	// ƒƒO‚ÌF
+	SimpleMath::Color	color = m_boxColor;
+
+	if (m_hitMouseFlag) color = m_boxColor * Colors::LightGray;
+
+	if (HoldMouse()) color = m_boxColor * Colors::Gray;
+	SimpleMath::Vector2 box_Pos = { m_data.pos.x,m_data.pos.y };
+
+	RECT rect = SpriteCutter(width, height, beside, vertical);
+
+	// ‘I‘ðBOX
+	pSB->Draw(texture.Get(), box_Pos, &rect, color, rotate, DirectX::XMFLOAT2(static_cast<float>(m_rect.right) / 2.0f, static_cast<float>(m_rect.bottom) / 2.0f), m_data.rage);
+
+	pSB->End();
+
+	m_drawKey->Draw();
+
+}
+

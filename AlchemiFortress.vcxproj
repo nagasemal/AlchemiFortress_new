@@ -422,13 +422,12 @@
     <None Include="Resources\Json\EnemyData\EnemyData_Slime.json" />
     <None Include="Resources\Json\EnemyData\EnemyData_Worm.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiCrystal.json" />
-    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiLeft.json" />
+    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMode.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMachineIcon.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMiddle.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiMP.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiNum.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiOffset.json" />
-    <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiRight.json" />
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiText.json" />
     <None Include="Resources\Json\GameParameter\Explanation\UILayout_ExplanationBack.json" />
     <None Include="Resources\Json\GameParameter\Explanation\UILayout_ExplanationDestory.json" />

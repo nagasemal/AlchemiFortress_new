@@ -3,8 +3,8 @@
     "MACHINES": [
       {
         "ELEMENT": "Nomal",
-        "LV": 3,
-        "NAME": "Mining",
+        "LV": 1,
+        "NAME": "Attacker",
         "NUMBER": 0
       },
       {
@@ -15,25 +15,25 @@
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 2,
-        "NAME": "Attacker",
+        "LV": 1,
+        "NAME": "Mining",
         "NUMBER": 2
       },
       {
         "ELEMENT": "Nomal",
         "LV": 1,
-        "NAME": "Upper",
+        "NAME": "None",
         "NUMBER": 3
       },
       {
         "ELEMENT": "Nomal",
         "LV": 1,
-        "NAME": "Upper",
+        "NAME": "None",
         "NUMBER": 4
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 2,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 5
       },
@@ -46,7 +46,7 @@
       {
         "ELEMENT": "Nomal",
         "LV": 1,
-        "NAME": "Attacker",
+        "NAME": "Defenser",
         "NUMBER": 7
       },
       {
@@ -57,31 +57,31 @@
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 2,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 9
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 2,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 10
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 3,
-        "NAME": "Defenser",
+        "LV": 1,
+        "NAME": "None",
         "NUMBER": 11
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 6,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 12
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 6,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 13
       },
@@ -141,7 +141,7 @@
       },
       {
         "ELEMENT": "Nomal",
-        "LV": 6,
+        "LV": 1,
         "NAME": "None",
         "NUMBER": 23
       },

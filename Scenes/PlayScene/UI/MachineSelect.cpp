@@ -8,6 +8,7 @@
 #include "NecromaLib/Singleton/ModelShader.h"
 #include "NecromaLib/Singleton/DeltaTime.h"
 #include "NecromaLib/GameData/Easing.h"
+#include "NecromaLib/Singleton/ShareJsonData.h"
 
 #define SELECTBOX_RAGE		{ 1.3f,1.3f }
 #define ALCHEMI_RAGE		(0.5f,0.5f)
@@ -31,7 +32,8 @@ MachineSelect::MachineSelect():
 	m_manufacturingFlag(),
 	m_selectMachineType(MACHINE_TYPE::NONE),
 	m_changeColorFlag(),
-	m_colorChangeTime()
+	m_colorChangeTime(),
+	m_tutorialLockFlag(true)
 {
 }
 
@@ -62,6 +64,7 @@ void MachineSelect::Initialize()
 void MachineSelect::Update()
 {
 	auto datas = DataManager::GetInstance();
+	auto pSJD = &ShareJsonData::GetInstance();
 	auto pINP = &InputSupport::GetInstance();
 
 	float deltaTime = DeltaTime::GetInstance().GetNomalDeltaTime();
@@ -69,6 +72,12 @@ void MachineSelect::Update()
 	m_manufacturingFlag = false;
 
 	m_machineBox->SetSavePos(m_data.pos);
+
+
+	// 要素から製造ボタンが押された判定を受け取る リソースが足りない場合は弾く
+	m_machineBox->SetActiveFlag(
+		((datas->GetNowMP() - pSJD->GetMachineData(m_selectMachineType).alchemi_mp >= 0 &&
+		  datas->GetNowCrystal() - pSJD->GetMachineData(m_selectMachineType).alchemi_crystal >= 0) && m_tutorialLockFlag));
 
 	// リストの中から選ばれた
 	m_machineBox->HitMouse(true);

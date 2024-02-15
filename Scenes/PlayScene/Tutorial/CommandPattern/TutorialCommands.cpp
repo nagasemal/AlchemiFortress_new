@@ -132,6 +132,20 @@ void Tutorial_AlchemiUI::Initialize()
 	m_tutorialManager->GetDisplayBox()->ResetAnimationData();
 
 	m_initializeFlag = true;
+
+	// マシンセレクトのポインターを取得する
+	auto machineSlectManager = m_tutorialManager->GetPlayScene()->GetAlchemicalMachineManager()->GetMachineSelect()->get();
+
+	//　====================[　アクティブフラグの変更　]
+	// 全て一度アクティブ状態を消す
+	for (int i = 0; i < MACHINE_TYPE::NUM; i++)
+	{
+		machineSlectManager->GetMachineSelect((MACHINE_TYPE)i)->SetTutorialLockUI(false);
+
+	}
+	// 指定の物だけ元に戻す
+	machineSlectManager->GetMachineSelect(m_machineType)->SetTutorialLockUI(true);
+
 }
 
 void Tutorial_AlchemiUI::Execute()
@@ -154,10 +168,16 @@ void Tutorial_AlchemiUI::Execute()
 	// 錬金が成功した回数が指定カウントを超えたら次のコマンドに移る
 	if (machineSelectManager->GetManufacturingFlag())
 	{
-
 		m_alchemiCount--;
-
 		if (m_alchemiCount <= 0)  m_completion = true;
+
+		//　====================[　アクティブフラグの変更　]
+		// 全て一度アクティブ状態を消す
+		for (int i = 0; i < MACHINE_TYPE::NUM; i++)
+		{
+			machineSelectManager->GetMachineSelect((MACHINE_TYPE)i)->SetTutorialLockUI(false);
+
+		}
 
 	}
 

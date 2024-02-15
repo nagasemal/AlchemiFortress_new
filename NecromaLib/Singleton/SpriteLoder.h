@@ -216,7 +216,7 @@ public:
 	TextureData GetUIText() { return m_uiText; }
 
 	// マシンを示す下向きの矢印アイコン
-	TextureData GetMachineSelectArrow() { return m_machineSelectArrow; }
+	TextureData GetInstallationMode() { return m_installationMode; }
 
 	// アルファベットテクスチャを返します
 	TextureData GetAlphabet() { return m_alphabet; }
@@ -345,8 +345,9 @@ private:
 	TextureData m_machineNameTextures;
 	// マシンアイコン
 	TextureData m_machineIconTexture;
-	// 選択先を示す矢印アイコン
-	TextureData m_machineSelectArrow;
+
+	// 設置モードテクスチャ
+	TextureData m_installationMode;
 
 	// 魔法陣のテクスチャ
 	TextureData m_magicCircleTexture[6 + 1];

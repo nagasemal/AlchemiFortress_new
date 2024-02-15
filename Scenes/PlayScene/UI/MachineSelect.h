@@ -58,6 +58,8 @@ public:
 
 	void SetChangeColorFlag(bool flag)								{ m_changeColorFlag = flag;}
 
+	void SetTutorialLockUI(bool flag)								{ m_tutorialLockFlag = flag; }
+
 	// 現在UIが規定位置に存在するか否か
 	bool SelectUIFlag();
 
@@ -66,6 +68,8 @@ private:
 	bool m_onMouseFlag;
 	bool m_hitMouseFlag;
 	bool m_manufacturingFlag;
+
+	bool m_tutorialLockFlag;	// チュートリアル用　個別にアクティブ状況を切り替えるフラグ
 
 	MACHINE_TYPE m_selectMachineType;
 

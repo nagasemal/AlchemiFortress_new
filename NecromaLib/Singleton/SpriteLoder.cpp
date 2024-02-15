@@ -223,7 +223,7 @@ void SpriteLoder::Loading()
 	LoadingPngFileData(L"Resources/Textures/MachineNames.png", m_machineNameTextures);
 
 	//　====================[　矢印アイコン　]
-	LoadingPngFileData(L"Resources/Textures/ClickArrow.png", m_machineSelectArrow);
+	LoadingPngFileData(L"Resources/Textures/InstallationMode.png", m_installationMode);
 
 	//　====================[　クリックポインター　]
 	LoadingPngFileData(L"Resources/Textures/ClickPointer.png", m_clickMousePointer);
