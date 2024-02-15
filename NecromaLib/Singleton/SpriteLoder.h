@@ -227,6 +227,9 @@ public:
 
 	TextureData GetNormalParticle() { return m_particle; }
 
+	// マシンの一行説明文
+	TextureData GetMachineSimpleText() { return m_machineSimpleText; }
+
 	// 画像を読み込む
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> LoadingPngFile(const wchar_t* filename, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>& spriteResource);
 
@@ -348,6 +351,9 @@ private:
 
 	// 設置モードテクスチャ
 	TextureData m_installationMode;
+
+	// マシンの説明文(一行)テクスチャ
+	TextureData m_machineSimpleText;
 
 	// 魔法陣のテクスチャ
 	TextureData m_magicCircleTexture[6 + 1];

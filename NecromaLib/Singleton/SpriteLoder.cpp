@@ -225,6 +225,9 @@ void SpriteLoder::Loading()
 	//　====================[　矢印アイコン　]
 	LoadingPngFileData(L"Resources/Textures/InstallationMode.png", m_installationMode);
 
+	//　====================[  マシンの一行説明　]
+	LoadingPngFileData(L"Resources/Textures/MachineSimpleText.png", m_machineSimpleText);
+
 	//　====================[　クリックポインター　]
 	LoadingPngFileData(L"Resources/Textures/ClickPointer.png", m_clickMousePointer);
 

@@ -116,6 +116,22 @@ void MachineSelectManager::Initialize()
 	m_alchemiCircle = std::make_unique<Particle_2D>();
 	m_particle		= std::make_unique<Particle_2D>();
 
+	//　====================[　チュートリアルの有無の変化　]
+	if (pSJD.GetStageData().tutorial[0].type != 0)
+	{
+		// 手動設置モードに変更
+		m_automaticFlag = false;
+
+		// 一度全てアクティブフラグを切るようにする
+
+		for (int i = 0; i < MACHINE_TYPE::NUM; i++)
+		{
+			m_machineSelect[i]->SetTutorialLockUI(false);
+		}
+
+	}
+
+
 }
 
 void MachineSelectManager::Update(FieldObjectManager* fieldObjectManager)
@@ -292,9 +308,6 @@ void MachineSelectManager::RenderUI(int machineNum[])
 			DirectX::XMFLOAT2(static_cast<float>((texData.width / (MACHINE_TYPE::NUM - 1)) / 2),
 				static_cast<float>(texData.height / 2)), MACHINE_UI_SIZE);
 
-		// 透明度付加
-		SimpleMath::Color alphaColor = SimpleMath::Color(1.0f, 1.0f, 1.0f, 1.0f);
-
 		////　====================[　魔力アイコンを描画　]
 		//uiData = pSJD.GetUIData("AlchemiMP");
 		//rect = SpriteCutter(ICON_TEX_RAGE, ICON_TEX_RAGE, 0, 0);
@@ -308,6 +321,17 @@ void MachineSelectManager::RenderUI(int machineNum[])
 		//pSB->Draw(pSL.GetElementTexture().Get(), uiData.pos - SimpleMath::Vector2(uiData.option["ICON_SHIFT"], 0.0f),
 		//	&rect, alphaColor, 0.0f, SimpleMath::Vector2(ICON_TEX_RAGE / 2.0f, ICON_TEX_RAGE / 2.0f), uiData.option["ICON_RAGE"]);
 	}
+
+
+	//　====================[　マシンの一行説明文]
+	SpriteLoder::TextureData texData = pSL.GetMachineSimpleText();
+	rect = SpriteCutter(texData.width / (MACHINE_TYPE::NUM - 1), texData.height, m_selectNumber - 1, 0);
+
+	pSB->Draw(texData.tex.Get(), pSJD.GetUIData("AlchemiText").pos,
+		&rect, Colors::White, 0.0f,
+		DirectX::XMFLOAT2(static_cast<float>((texData.width / (MACHINE_TYPE::NUM - 1)) / 2),
+			static_cast<float>(texData.height / 2)), pSJD.GetUIData("AlchemiText").rage);
+
 
 	pSB->End();
 
@@ -323,10 +347,6 @@ void MachineSelectManager::RenderUI(int machineNum[])
 	SpriteLoder::TextureData alchemiArrowTexture = pSL.GetInstallationMode();
 	m_modeChangeButton->DrawUI(alchemiArrowTexture.tex.Get(), 0.0f, alchemiArrowTexture.width / 2, alchemiArrowTexture.height, (int)!m_automaticFlag, 0);
 	m_modeChangeButton->SetRect(RECT{ 0,0, alchemiArrowTexture.width / 2, alchemiArrowTexture.height });
-
-	//　====================[　必要リソース量の描画　]
-	// m_mpNumRender->	Render();
-	// m_crystalRender->Render();
 
 	//　====================[　パーティクルの描画　]
 	SpriteLoder::TextureData particleTex = pSL.GetMachineMagicCircleTexture(m_selectNumber);
