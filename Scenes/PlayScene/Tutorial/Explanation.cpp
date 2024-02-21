@@ -9,9 +9,9 @@
 
 #include "Scenes/PlayScene/AlchemicalMachine/AlchemicalMachineManager.h"
 
-#define RATIO_X 1.35f
+#define RATIO_X 1.2f
 
-#define LETTER_ADJUSTMENT_POS_X 80
+#define LETTER_ADJUSTMENT_POS_X 120
 
 #define LETTER_POS_Y 660
 #define LETTER_ADJUSTMENT_POS_Y 40

@@ -13,7 +13,7 @@
   "Conditions_Machine": {
     "MACHINE_SPAWN": [
       {
-        "TYPE": "Upper",
+        "TYPE": "Defenser",
         "VALUE": 1
       }
     ]
@@ -21,7 +21,7 @@
   "Conditions_Alchemi": {
     "MACHINE_ALCHEMI": [
       {
-        "TYPE": "Upper",
+        "TYPE": "Defenser",
         "VALUE": 1
       }
     ]
@@ -51,20 +51,21 @@
     ]
   },
   "ENEMY_SPAWNTIME": {
-    "ENEMYS": []
+    "ENEMYS": [
+    ]
   },
   "MACHINE_DEFAULET": {
     "MACHINES": []
   },
   "RESOURCE_DEFAULET": {
     "ATTACKER": 0,
-    "CRYSTAL": 50,
+    "CRYSTAL": 60,
     "DEFFENCER": 0,
     "LV": 1,
     "HP": 500,
     "MINING": 0,
-    "MP": 50,
-    "EXP": 0,
+    "MP": 20,
+    "EXP": 200,
     "RECOVERY": 0,
     "UPPER": 0
   },
@@ -82,12 +83,12 @@
       "VAL": 1
     },
     {
-      "NUMBER": 3,
+      "NUMBER": 2,
       "VAL": 1
     },
     {
       "NUMBER": 6,
-      "VAL": 3
+      "VAL": 2
     },
     {
       "NUMBER": 14,
@@ -101,4 +102,4 @@
   "LastWave": false,
   "EnemyLv": 1
 }
-// アッパーマシンを使い回復,強化するチュートリアル
+// ディフェンサーマシンを設置するチュートリアル

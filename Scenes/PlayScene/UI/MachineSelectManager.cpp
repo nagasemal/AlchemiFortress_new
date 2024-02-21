@@ -120,10 +120,9 @@ void MachineSelectManager::Initialize()
 	if (pSJD.GetStageData().tutorial[0].type != 0)
 	{
 		// 手動設置モードに変更
-		m_automaticFlag = false;
+		m_automaticFlag = true;
 
 		// 一度全てアクティブフラグを切るようにする
-
 		for (int i = 0; i < MACHINE_TYPE::NUM; i++)
 		{
 			m_machineSelect[i]->SetTutorialLockUI(false);
@@ -215,7 +214,7 @@ void MachineSelectManager::Update(FieldObjectManager* fieldObjectManager)
 	//
 	//	if (m_selectNumber <= 0) m_selectNumber = 5;
 	//}
-
+	//
 	//m_mpNumRender	->	SetNumber(pSJD->GetMachineData(machineType).alchemi_mp);
 	//m_crystalRender	->	SetNumber(pSJD->GetMachineData(machineType).alchemi_crystal);
 
@@ -308,18 +307,6 @@ void MachineSelectManager::RenderUI(int machineNum[])
 			DirectX::XMFLOAT2(static_cast<float>((texData.width / (MACHINE_TYPE::NUM - 1)) / 2),
 				static_cast<float>(texData.height / 2)), MACHINE_UI_SIZE);
 
-		////　====================[　魔力アイコンを描画　]
-		//uiData = pSJD.GetUIData("AlchemiMP");
-		//rect = SpriteCutter(ICON_TEX_RAGE, ICON_TEX_RAGE, 0, 0);
-		//pSB->Draw(pSL.GetElementTexture().Get(), uiData.pos - SimpleMath::Vector2(uiData.option["ICON_SHIFT"], 0.0f),
-		//	&rect, alphaColor,
-		//	0.0f, SimpleMath::Vector2(ICON_TEX_RAGE / 2.0f, ICON_TEX_RAGE / 2.0f), uiData.option["ICON_RAGE"]);
-		//
-		////　====================[　結晶アイコンを描画　]
-		//uiData = pSJD.GetUIData("AlchemiCrystal");
-		//rect = SpriteCutter(ICON_TEX_RAGE, ICON_TEX_RAGE, 1, 0);
-		//pSB->Draw(pSL.GetElementTexture().Get(), uiData.pos - SimpleMath::Vector2(uiData.option["ICON_SHIFT"], 0.0f),
-		//	&rect, alphaColor, 0.0f, SimpleMath::Vector2(ICON_TEX_RAGE / 2.0f, ICON_TEX_RAGE / 2.0f), uiData.option["ICON_RAGE"]);
 	}
 
 
@@ -331,7 +318,6 @@ void MachineSelectManager::RenderUI(int machineNum[])
 		&rect, Colors::White, 0.0f,
 		DirectX::XMFLOAT2(static_cast<float>((texData.width / (MACHINE_TYPE::NUM - 1)) / 2),
 			static_cast<float>(texData.height / 2)), pSJD.GetUIData("AlchemiText").rage);
-
 
 	pSB->End();
 

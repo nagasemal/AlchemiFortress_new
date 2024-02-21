@@ -971,7 +971,7 @@
     <None Include="Resources\Json\StageData\Stage_1\StageData_1_1.json">
       <Filter>Json\StageData\Stage1</Filter>
     </None>
-    <None Include="Resources\Json\StageData\Stage_1\StageData_1_2.json">
+    <None Include="Resources\Json\StageData\Stage_1\StageData_1_3.json">
       <Filter>Json\StageData\Stage1</Filter>
     </None>
     <None Include="Resources\Json\StageData\Stage_1\StageData_1_4.json">
@@ -980,11 +980,11 @@
     <None Include="Resources\Json\StageData\Stage_1\StageData_1_5.json">
       <Filter>Json\StageData\Stage1</Filter>
     </None>
-    <None Include="Resources\Json\StageData\Stage_1\StageData_1_6.json">
-      <Filter>Json\StageData\Stage1</Filter>
-    </None>
     <None Include="Resources\Shader\TutorialShader.hlsli">
       <Filter>Shader\TutorialText</Filter>
+    </None>
+    <None Include="Resources\Json\StageData\Stage_1\StageData_1_6.json">
+      <Filter>Json\StageData\Stage1</Filter>
     </None>
     <None Include="Resources\Json\StageData\Stage_1\StageData_1_7.json">
       <Filter>Json\StageData\Stage1</Filter>
@@ -993,9 +993,6 @@
       <Filter>Json\StageData\Stage1</Filter>
     </None>
     <None Include="Resources\Json\StageData\Stage_1\StageData_1_9.json">
-      <Filter>Json\StageData\Stage1</Filter>
-    </None>
-    <None Include="Resources\Json\StageData\Stage_1\StageData_1_10.json">
       <Filter>Json\StageData\Stage1</Filter>
     </None>
     <None Include="Resources\Json\StageData\Stage_2\StageData_2_1.json">
@@ -1160,7 +1157,7 @@
     <None Include="Resources\Json\GameParameter\Alchemi\UILayout_AlchemiText.json">
       <Filter>Json\GameParameterData\Alchemi</Filter>
     </None>
-    <None Include="Resources\Json\StageData\Stage_1\StageData_1_3.json">
+    <None Include="Resources\Json\StageData\Stage_1\StageData_1_2.json">
       <Filter>Json\StageData\Stage1</Filter>
     </None>
     <None Include="Resources\Json\StageData\Stage_4\StageData_4_1.json">

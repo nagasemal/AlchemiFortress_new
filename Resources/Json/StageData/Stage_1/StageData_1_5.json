@@ -13,16 +13,16 @@
   "Conditions_Machine": {
     "MACHINE_SPAWN": [
       {
-        "TYPE": "Mining",
-        "VALUE": 1
+        "TYPE": "Attacker",
+        "VALUE": -1
       }
     ]
   },
   "Conditions_Alchemi": {
     "MACHINE_ALCHEMI": [
       {
-        "TYPE": "Mining",
-        "VALUE": 1
+        "TYPE": "Attacker",
+        "VALUE": -1
       }
     ]
   },
@@ -45,8 +45,12 @@
   "Conditions_Resource": {
     "RESOURCE": [
       {
+        "TYPE": "MP",
+        "VALUE": 40
+      },
+      {
         "TYPE": "Crystal",
-        "VALUE": -1
+        "VALUE": 25
       }
     ]
   },
@@ -59,45 +63,17 @@
   },
   "RESOURCE_DEFAULET": {
     "ATTACKER": 0,
-    "CRYSTAL": 0,
+    "CRYSTAL": -500,
     "DEFFENCER": 0,
     "LV": 1,
     "HP": 500,
     "MINING": 0,
-    "MP": 0,
+    "MP": -500,
     "EXP": 0,
     "RECOVERY": 0,
     "UPPER": 0
   },
   "TUTORIAL": [
-    {
-      "NUMBER": 20,
-      "VAL": 0
-    },
-    {
-      "NUMBER": 19,
-      "VAL": 1
-    },
-    {
-      "NUMBER": 20,
-      "VAL": 1
-    },
-    {
-      "NUMBER": 5,
-      "VAL": 1
-    },
-    {
-      "NUMBER": 6,
-      "VAL": 5
-    },
-    {
-      "NUMBER": 20,
-      "VAL": 0
-    },
-    {
-      "NUMBER": 14,
-      "VAL": 1
-    },
     {
       "NUMBER": 0,
       "VAL": 0
@@ -107,4 +83,4 @@
   "EnemyLv": 1
 }
 
-// エクスカベーターマシンに結晶を回収させ、結晶ゲージが規定値になることを見届けるチュートリアル
+// エクスカベーターが結晶を回収するチュートリアル

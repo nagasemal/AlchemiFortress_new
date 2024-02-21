@@ -7,7 +7,7 @@
     "ENEMY_KNOCKDOWN": [
       {
         "TYPE": "All",
-        "VALUE": -1
+        "VALUE": 1
       }
     ]
   },
@@ -15,7 +15,7 @@
     "MACHINE_SPAWN": [
       {
         "TYPE": "Attacker",
-        "VALUE": 1
+        "VALUE": -1
       }
     ]
   },
@@ -53,6 +53,15 @@
   },
   "ENEMY_SPAWNTIME": {
     "ENEMYS": [
+      {
+        "CONDITION": "",
+        "SPAWNTIME": 7,
+        "SPAWN_X": -8,
+        "SPAWN_Y": 0,
+        "SPAWN_Z": 12,
+        "LV": 1,
+        "TYPE": "Slime"
+      }
     ]
   },
   "MACHINE_DEFAULET": {
@@ -72,11 +81,11 @@
   },
   "TUTORIAL": [
     {
-      "NUMBER": 19,
-      "VAL": 1
+      "NUMBER": 16,
+      "VAL": 7.5
     },
     {
-      "NUMBER": 14,
+      "NUMBER": 19,
       "VAL": 1
     },
     {
